@@ -1,0 +1,66 @@
+****UUSI TOKEN****
+
+curl -X POST -d "grant_type=client_credentials" -H "content-type: application/x-www-form-urlencoded" -H "Authorization: Basic <oma hash>" https://identity.apaleo.com/connect/token
+
+****SET TOKEN****
+
+set token=<TOKEN>
+
+****ALKU****
+
+curl -i -H "Authorization: Bearer %token%" -X
+
+****TSD****
+
+PATCH
+
+https://api.apaleo.com/settings/v1/properties/MUC/time-slice-definitions
+
+[
+  {
+    "value": {
+      "name": "Over Harri",
+        "template": "OverNight",
+        "checkInTime": "12:00:00",
+        "checkOutTime": "10:00:00"
+    },
+    "path": "timeSliceDefinitions/-",
+    "op": "add",
+    ("from": "string") ***TÄMÄ VAIN TIETYISSÄ PATCH-komennoissa***
+  }
+]
+
+****MUUTOKSET RATE-PLANEIHIN****
+
+Replace Name
+Replace Description
+Replace MinGuaranteeType
+Replace CancellationPolicy
+Replace ChannelCodes
+Replace Companies
+Add, replace and remove PromoCode
+Add, replace and remove Restrictions
+Add, replace and remove BookingPeriods
+Add, replace and remove IsSubjectToCityTax
+Add, replace and remove PricingRule
+Add, replace and remove Surcharges
+Add, replace and remove AgeCategories
+Add, replace and remove IncludedServices
+Add, replace and remove SubAccountId
+You must have at least one of these scopes: 'rateplans.manage, setup.manage'.
+
+PATCH
+
+https://api.apaleo.com/rateplan/v1/rate-plans?ratePlanIds=MUC-HARRIREF-DBL,MUC-TESTI2-DBL
+
+[
+  {
+    "value": "test1",
+    "path": "/name/en",
+    "op": "replace"
+  }
+]
+
+
+
+
